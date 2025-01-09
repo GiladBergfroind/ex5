@@ -281,6 +281,7 @@ void printSongs(struct Song *song, int songNum)
 {
     printf("%d. Title: %s\n   Artist: %s\n   Released: %d\n   Streams: %d\n\n",songNum,song->title,
         song->artist,song->year,song->streams);
+    fflush(NULL);
 }
 
 void addSong(struct  Playlist* playlists) {
@@ -288,6 +289,7 @@ void addSong(struct  Playlist* playlists) {
     if (newSong == NULL)
     {
         printf("Memory allocation failed\n");
+        fflush(NULL);
         return;
     }
     printf("Enter song's details:\n");
@@ -301,6 +303,7 @@ void addSong(struct  Playlist* playlists) {
     scanf(" %d",&year);
     newSong->year = year;
 	printf("Lyrics:\n");
+    fflush(NULL);
     newSong->lyrics = getString();
     newSong->next = NULL;
     newSong->prev = NULL;
@@ -327,6 +330,7 @@ void showPlaylist(struct Playlist *playlist) {
 		while (songToPlay != 0)
         {
             printf("Choose a song to play, or 0 to quit:\n");
+            fflush(NULL);
             scanf(" %d", &songToPlay);
             if (songToPlay == 0)
                 return;
@@ -336,12 +340,14 @@ void showPlaylist(struct Playlist *playlist) {
                 currentSong = currentSong->next;
             }
             printf("Now playing %s:\n$ %s $\n", currentSong->title, currentSong->lyrics);
+            fflush(NULL);
             currentSong->streams++;
         }
     }
     else {
         int temp;
         printf("Choose a song to play, or 0 to quit:\n");
+        fflush(NULL);
         scanf("%d", &temp);
         }
     return;
@@ -359,9 +365,11 @@ int deleteSong(struct Playlist* playlist) {
     }
     else {
         printf("No songs in the playlist.\n");
+        fflush(NULL);
         return 0;
     }
     printf("Choose a song to delete, or 0 to quit:\n");
+    fflush(NULL);
     int songToDelete;
     scanf(" %d", &songToDelete);
     if (songToDelete == 0) {
@@ -389,7 +397,8 @@ void playPlaylist(struct Playlist* playlist) {
 	struct Song* currentSong = playlist->songs;
     while (currentSong!= NULL) {
         printf("Now playing %s:\n$ %s $\n", currentSong->title, currentSong->lyrics);
-		currentSong->streams++;
+        fflush(NULL);
+        currentSong->streams++;
 		currentSong = currentSong->next;
     }
 }
@@ -406,7 +415,7 @@ void watchPlaylists(struct Playlist* playlists) {
 	}
  
     printf("\t%d. Back to main menu\n", i);
-
+    fflush(NULL);
     int whichPlaylist;
     scanf("%d", &whichPlaylist);
 
@@ -419,11 +428,12 @@ void watchPlaylists(struct Playlist* playlists) {
         currentPlaylist = currentPlaylist->next;
     int exitPlaylist = 0;
     printf("Playlist %s:\n\t", currentPlaylist->name);
+    fflush(NULL);
     while (!exitPlaylist)
     {
         printf(" 1. Show Playlist \n\t 2. Add Song \n\t 3. Delete song \n\t 4. Sort \n\t "
             "5. Play \n\t 6. exit\n");
-
+        fflush(NULL);
         int task;
         int result;
         scanf("%d", &task);
@@ -437,6 +447,7 @@ void watchPlaylists(struct Playlist* playlists) {
         case 3:
             if ((result = deleteSong(currentPlaylist)) == 1)
                 printf("Song deleted successfully.\n");
+            fflush(NULL);
             break;
         case 4:
             sortPlaylist(currentPlaylist);
@@ -463,7 +474,8 @@ void removePlaylist(struct Playlist** playlist) {
             i++;
         }
 		printf("\t%d. Back to main menu\n", i);
-    int playlistToDelete;
+        fflush(NULL);
+        int playlistToDelete;
     scanf(" %d", &playlistToDelete);
 	if (playlistToDelete == i) {
 		return;
@@ -499,9 +511,11 @@ void addPlaylist(struct  Playlist** playlists) {
     struct Playlist* newPlaylist = malloc(sizeof(struct Playlist));
 	if (newPlaylist == NULL) {
 		printf("Memory allocation failed.\n");
-		return;
+        fflush(NULL);
+        return;
 	}
     printf("Enter playlist's name:\n");
+    fflush(NULL);
     newPlaylist->name = getString();
     newPlaylist->songs = NULL;
     newPlaylist->songsNum = 0;
@@ -526,7 +540,8 @@ void freeSong(struct Song* song) {
 
 void printPlaylistsMenu() {
     printf("Please Choose:\n"); 
-    printf("\t1. Watch playlists\n\t2. Add playlist\n\t3. Remove playlist\n\t4. exit\n");   
+    printf("\t1. Watch playlists\n\t2. Add playlist\n\t3. Remove playlist\n\t4. exit\n");
+    fflush(NULL);
 }
 
 int howManySongs(struct Song* song) {
@@ -541,6 +556,7 @@ int howManySongs(struct Song* song) {
 
 void sortPlaylist(struct Playlist* playlist) {
     printf("choose:\n1. sort by year\n2. sort by streams - ascending order\n3. sort by streams - descending order\n4. sort alphabetically\n");
+    fflush(NULL);
     int task;
     scanf("%d", &task);
     switch (task) {
@@ -566,6 +582,7 @@ void sortPlaylist(struct Playlist* playlist) {
         break;
         
     }
+    fflush(NULL);
 }
 
 int main() {
@@ -586,11 +603,13 @@ int main() {
             break;
         case 4:
             printf("Goodbye!\n");
-			exitProgram = 1;
+            fflush(NULL);
+            exitProgram = 1;
             freeAllPlaylists(playlists);
             break;
         default:
             printf("Invalid input");
+            fflush(NULL);
             break;
         
         }
