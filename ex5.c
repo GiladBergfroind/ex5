@@ -454,7 +454,6 @@ void watchPlaylists(struct Playlist* playlists) {
 void removePlaylist(struct Playlist** playlist) {
     struct Playlist* currentPlaylist = *playlist;
     int i = 1;
-    if (currentPlaylist != NULL) {
         printf("Choose a playlist:\n");
         while (currentPlaylist != NULL) {
             printf("\t%d. %s\n", i, currentPlaylist->name);
@@ -462,10 +461,6 @@ void removePlaylist(struct Playlist** playlist) {
             i++;
         }
 		printf("\t%d. Back to main menu\n", i);
-    }
-    else {
-        return;
-    }
     int playlistToDelete;
     scanf(" %d", &playlistToDelete);
 	if (playlistToDelete == i) {
