@@ -296,7 +296,7 @@ void addSong(struct  Playlist* playlists) {
         fflush(NULL);
         return;
     }
-    printf("Enter song's details:\n");
+    printf("Enter song's details\n");
 	printf("Title:\n");
     newSong->title = getString();
 	printf("Artist:\n");
@@ -333,7 +333,7 @@ void showPlaylist(struct Playlist *playlist) {
         int songToPlay = 5;
 		while (songToPlay != 0)
         {
-            printf("Choose a song to play, or 0 to quit:\n");
+            printf("choose a song to play, or 0 to quit:\n");
             fflush(NULL);
             scanf(" %d", &songToPlay);
             if (songToPlay == 0)
@@ -431,11 +431,11 @@ void watchPlaylists(struct Playlist* playlists) {
     for (i = 1; i < whichPlaylist; i++)
         currentPlaylist = currentPlaylist->next;
     int exitPlaylist = 0;
-    printf("Playlist %s:\n\t", currentPlaylist->name);
+    printf("playlist %s:\n\t", currentPlaylist->name);
     fflush(NULL);
     while (!exitPlaylist)
     {
-        printf(" 1. Show Playlist \n\t 2. Add Song \n\t 3. Delete song \n\t 4. Sort \n\t "
+        printf(" 1. Show Playlist \n\t 2. Add Song \n\t 3. Delete Song \n\t 4. Sort \n\t "
             "5. Play \n\t 6. exit\n");
         fflush(NULL);
         int task;
