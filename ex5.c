@@ -37,15 +37,29 @@ struct Playlist* playlistByIndex(struct Playlist* playlist, int index);
 
 void freeSong(struct Song* song); 
 
-void freePlaylist(struct Playlist* playlist)
+/*void freePlaylist(struct Playlist* playlist)
 {
     for (int i = 0; i < howManySongs(playlist->songs); i++) {
         struct Song* tempSong = songByIndex(playlist->songs, 0);
         freeSong(tempSong);
     }
+}*/
+
+void freePlaylist(struct Playlist* playlist)
+{
+    struct Song* tempSong = playlist->songs, * next;
+    while (tempSong)
+    {
+        next = tempSong->next;
+        free(tempSong->title);
+        free(tempSong->artist);
+        free(tempSong->lyrics);
+        free(tempSong);
+        tempSong = next;
+    }
 }
 
-void freeAllPlaylists(struct Playlist* playlist)
+/*void freeAllPlaylists(struct Playlist* playlist)
 {
     if (playlist == NULL)
         return;
@@ -58,6 +72,22 @@ void freeAllPlaylists(struct Playlist* playlist)
         currentPlaylist = nextPlaylist;
         if (nextPlaylist != NULL)
             nextPlaylist = nextPlaylist->next;
+    }
+}*/
+
+void freeAllPlaylists(struct Playlist* playlist)
+{
+    if (playlist == NULL)
+        return;
+    struct Playlist* currentPlaylist = playlist;
+    struct Playlist* nextPlaylist;
+    while (currentPlaylist != NULL)
+    {
+        nextPlaylist = currentPlaylist->next;
+        freePlaylist(currentPlaylist);
+        free(currentPlaylist->name);
+        free(currentPlaylist);
+        currentPlaylist = nextPlaylist;
     }
 }
 
@@ -350,7 +380,7 @@ void showPlaylist(struct Playlist *playlist) {
     }
     else {
         int temp;
-        printf("Choose a song to play, or 0 to quit:\n");
+        printf("choose a song to play, or 0 to quit:\n");
         fflush(NULL);
         scanf("%d", &temp);
         }
