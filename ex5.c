@@ -57,6 +57,8 @@ void freePlaylist(struct Playlist* playlist)
         free(tempSong);
         tempSong = next;
     }
+    free(playlist->name);
+    free(playlist);
 }
 
 /*void freeAllPlaylists(struct Playlist* playlist)
@@ -85,8 +87,6 @@ void freeAllPlaylists(struct Playlist* playlist)
     {
         nextPlaylist = currentPlaylist->next;
         freePlaylist(currentPlaylist);
-        free(currentPlaylist->name);
-        free(currentPlaylist);
         currentPlaylist = nextPlaylist;
     }
 }
@@ -500,6 +500,12 @@ void watchPlaylists(struct Playlist* playlists) {
 
 void removePlaylist(struct Playlist** playlist) {
     struct Playlist* currentPlaylist = *playlist;
+
+    if (currentPlaylist == NULL)
+    {
+        return;
+    }
+
     int i = 1;
         printf("Choose a playlist:\n");
         while (currentPlaylist != NULL) {
@@ -531,7 +537,8 @@ void removePlaylist(struct Playlist** playlist) {
     else {
         nextPlaylist->prev = prevPlaylist;
     }
-        free(tempPlaylist->name);
+    
+    free(tempPlaylist->name);
 	for (int i = 0; i < howManySongs(tempPlaylist->songs); i++) {
         struct Song* tempSong = songByIndex(tempPlaylist->songs,0);
         freeSong(tempSong);
