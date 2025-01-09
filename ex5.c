@@ -402,7 +402,7 @@ int deleteSong(struct Playlist* playlist) {
         fflush(NULL);
         return 0;
     }
-    printf("Choose a song to delete, or 0 to quit:\n");
+    printf("choose a song to delete, or 0 to quit:\n");
     fflush(NULL);
     int songToDelete;
     scanf(" %d", &songToDelete);
