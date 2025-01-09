@@ -47,13 +47,17 @@ void freePlaylist(struct Playlist* playlist)
 
 void freeAllPlaylists(struct Playlist* playlist)
 {
+    if (playlist == NULL)
+        return;
+
     struct Playlist* currentPlaylist = playlist;
     struct Playlist* nextPlaylist = playlist->next;
     while (currentPlaylist != NULL)
     {
         freePlaylist(currentPlaylist);
         currentPlaylist = nextPlaylist;
-        nextPlaylist = nextPlaylist->next;
+        if (nextPlaylist != NULL)
+            nextPlaylist = nextPlaylist->next;
     }
 }
 
@@ -615,3 +619,4 @@ int main() {
         }
     }
 }
+
