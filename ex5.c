@@ -251,7 +251,7 @@ void* getString() {
     while (!endOfLine) {
         char temp[FIRST_SIZE+1] = { 0 };
         char* temp1 = temp;
-        scanf(" %" FIRST_SIZE_S "[^\n]s", temp1);
+        scanf(" %" FIRST_SIZE_S "[^\n\r]s", temp1);
         if (temp[size - 2] == '\n' || temp[size - 2] == 0) {
             endOfLine = 1;
         }
