@@ -236,9 +236,10 @@ struct Playlist* getLastPlaylist(struct Playlist* playlist) {
 
 struct Song* getLastSong(struct Song* song) {
     struct Song* currentSong = song;
-    while (currentSong->next != NULL)
+    while (currentSong->next != NULL) {
         currentSong = currentSong->next;
-	return currentSong;
+    }
+    return currentSong;
 }
 
 void* getString() {
@@ -480,12 +481,14 @@ void removePlaylist(struct Playlist** playlist) {
         prevPlaylist->next = nextPlaylist;
     if (nextPlaylist == NULL)
     {
-        if (prevPlaylist != NULL)
+        if (prevPlaylist != NULL) {
             prevPlaylist->next = NULL;
+        }
     }
-    else
+    else {
         nextPlaylist->prev = prevPlaylist;
-	free(tempPlaylist->name);
+    }
+        free(tempPlaylist->name);
 	for (int i = 0; i < howManySongs(tempPlaylist->songs); i++) {
         struct Song* tempSong = songByIndex(tempPlaylist->songs,0);
         freeSong(tempSong);
@@ -569,8 +572,7 @@ void sortPlaylist(struct Playlist* playlist) {
 }
 
 int main() {
-    int amountOfSongs = 0, amountOfPlaylists = 0 , firstSize = FIRST_SIZE , *sizeOfPlaylists = &firstSize,
-    *sizeOfSongs = &firstSize;
+    int firstSize = FIRST_SIZE;
     struct Playlist *playlists = NULL;
     int task, exitProgram = 0;
     while (!exitProgram) {
