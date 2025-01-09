@@ -464,7 +464,6 @@ void removePlaylist(struct Playlist** playlist) {
 		printf("\t%d. Back to main menu\n", i);
     }
     else {
-        printf("No playlists in the playlist.\n");
         return;
     }
     int playlistToDelete;
