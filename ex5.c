@@ -222,7 +222,8 @@ struct Song* songByIndex(struct Song* song, int index)
 
 struct Playlist* getLastPlaylist(struct Playlist* playlist) {
     struct Playlist* currentPlaylist = playlist;
-    while (currentPlaylist->next != NULL)
+    struct Playlist* nextPlaylist = currentPlaylist->next;
+    while (nextPlaylist != NULL)
         currentPlaylist = currentPlaylist->next;
 	return currentPlaylist;
 }
