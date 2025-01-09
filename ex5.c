@@ -250,7 +250,8 @@ void* getString() {
     int size = FIRST_SIZE;
     while (!endOfLine) {
         char temp[FIRST_SIZE+1] = { 0 };
-        scanf(" %" FIRST_SIZE_S "[^\n]s", &temp);
+        char* temp1 = temp;
+        scanf(" %" FIRST_SIZE_S "[^\n]s", &temp1);
         if (temp[size - 2] == '\n' || temp[size - 2] == 0) {
             endOfLine = 1;
         }
@@ -572,7 +573,6 @@ void sortPlaylist(struct Playlist* playlist) {
 }
 
 int main() {
-    int firstSize = FIRST_SIZE;
     struct Playlist *playlists = NULL;
     int task, exitProgram = 0;
     while (!exitProgram) {
