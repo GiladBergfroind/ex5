@@ -418,10 +418,11 @@ void watchPlaylists(struct Playlist* playlists) {
     for (i = 1; i < whichPlaylist; i++)
         currentPlaylist = currentPlaylist->next;
     int exitPlaylist = 0;
+    printf("Playlist %s:\n\t", currentPlaylist->name);
     while (!exitPlaylist)
     {
-        printf("Playlist %s:\n\t 1. Show Playlist \n\t 2. Add Song \n\t 3. Delete song \n\t 4. Sort \n\t "
-            "5. Play \n\t 6. exit\n", currentPlaylist->name);
+        printf(" 1. Show Playlist \n\t 2. Add Song \n\t 3. Delete song \n\t 4. Sort \n\t "
+            "5. Play \n\t 6. exit\n");
 
         int task;
         int result;
@@ -449,6 +450,7 @@ void watchPlaylists(struct Playlist* playlists) {
             return;
         }
     }
+    watchPlaylists(playlists);
 }
 
 void removePlaylist(struct Playlist** playlist) {
