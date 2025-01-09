@@ -1,3 +1,7 @@
+/*******************
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -222,8 +226,8 @@ struct Song* songByIndex(struct Song* song, int index)
 
 struct Playlist* getLastPlaylist(struct Playlist* playlist) {
     struct Playlist* currentPlaylist = playlist;
-    struct Playlist* nextPlaylist = currentPlaylist->next;
-    while (nextPlaylist != NULL)
+    if (currentPlaylist == NULL) return NULL;
+    while (currentPlaylist->next != NULL)
         currentPlaylist = currentPlaylist->next;
 	return currentPlaylist;
 }
