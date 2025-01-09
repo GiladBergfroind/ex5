@@ -1,7 +1,8 @@
-/*******************
-
-
-
+/******************
+Name: Gilad Bergfroind
+ID: 331749978
+Assignment: ex5
+*******************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
