@@ -531,13 +531,14 @@ void removePlaylist(struct Playlist** playlist) {
     else {
         nextPlaylist->prev = prevPlaylist;
     }
-        free(tempPlaylist->name);
+        
+    free(tempPlaylist->name);
 	for (int i = 0; i < howManySongs(tempPlaylist->songs); i++) {
         struct Song* tempSong = songByIndex(tempPlaylist->songs,0);
         freeSong(tempSong);
-        return;
 	}
     free(tempPlaylist);
+    printf("Playlist deleted.");
     return;
 }
 
