@@ -538,7 +538,7 @@ void removePlaylist(struct Playlist** playlist) {
         freeSong(tempSong);
 	}
     free(tempPlaylist);
-    printf("Playlist deleted.");
+    printf("Playlist deleted.\n");
     return;
 }
 
